@@ -89,6 +89,7 @@ implementation {
 
   event void AMControl.startDone(error_t err) {
     if (err == SUCCESS) {
+      call Leds.led1On();
       call Timer0.startPeriodic(TIMER_PERIOD_MILLI);
     }
     else {
@@ -100,6 +101,7 @@ implementation {
   }
 
   event void Timer0.fired() {
+    printf("Timer triggered!\n");
     counter++;
     if (!busy) {
       BlinkToRadioMsg* btrpkt = 
@@ -113,6 +115,7 @@ implementation {
           &pkt, sizeof(BlinkToRadioMsg)) == SUCCESS) {
         busy = TRUE;
       }
+      printf("Message sent!!\n");
     }
   }
 
@@ -123,10 +126,11 @@ implementation {
   }
 
   event message_t* Receive.receive(message_t* msg, void* payload, uint8_t len){
+    printf("Message received!\n");
     if (len == sizeof(BlinkToRadioMsg)) {
       BlinkToRadioMsg* btrpkt = (BlinkToRadioMsg*)payload;
       setLeds(btrpkt->counter);
-      printf("Source Node: %u, Counter: %u\n",btrpkt->nodeid,btrpkt->counter);
+      //printf("Source Node: %u, Counter: %u\n",btrpkt->nodeid,btrpkt->counter);
     }
     return msg;
   }
