@@ -42,6 +42,9 @@
  * @author Jan Hauer
  */
 
+
+//Modified by jachermocilla@gmail.com to utilize printf
+
 #include "Timer.h"
 #include "printf.h"
 
@@ -57,7 +60,8 @@ module SenseC
 implementation
 {
   // sampling frequency in binary milliseconds
-  #define SAMPLING_FREQUENCY 100
+
+  #define SAMPLING_FREQUENCY 120
   
   event void Boot.booted() {
     call Timer.startPeriodic(SAMPLING_FREQUENCY);
@@ -72,9 +76,10 @@ implementation
   {
     if (result == SUCCESS){
 
-      //added by jach
-
+      //The node id is set at build time: make telosb install,<node id>
       printf("NODE ID: %u\n",TOS_NODE_ID);
+      
+      //Output the temperature read (conversion obtained from stackoverflow
       printf("Data received! Temperature= %u\n",((data/10)-396)/10);      
 
       if (data & 0x0004)

@@ -52,6 +52,8 @@ configuration SenseAppC
 implementation { 
   
   //components SenseC, MainC, LedsC, new TimerMilliC(), new DemoSensorC() as Sensor;
+ 
+  //This code uses the Temperature and Humidity Sensors
   components SenseC, MainC, LedsC, new TimerMilliC(), new SensirionSht11C() as Sensor;
   components PrintfC;
   components SerialStartC;
