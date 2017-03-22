@@ -1,13 +1,13 @@
 <tos_image>
   <ident>
     <username>root</username>
-    <hostname>vagrant-ubuntu-</hostname>
-    <timestamp>58D22753L</timestamp>
     <appname>SenseAppC</appname>
-    <platform>telosb</platform>
-    <deluge_support>no</deluge_support>
     <userhash>912B0AF7L</userhash>
-    <uidhash>F41D8C7BL</uidhash>
+    <timestamp>58D23477L</timestamp>
+    <deluge_support>no</deluge_support>
+    <hostname>vagrant-ubuntu-</hostname>
+    <uidhash>B9D3DD8FL</uidhash>
+    <platform>telosb</platform>
   </ident>
   <image format="ihex">
 :10400000314000391542200175F335D0085A3F4040
