@@ -6,7 +6,7 @@
 
 #include "printf.h"
 
-module BlinkToRadioC {
+module SenseItAllC {
   uses interface Boot;
   uses interface Leds;
   uses interface Timer<TMilli> as Timer0;
@@ -15,6 +15,8 @@ module BlinkToRadioC {
   uses interface AMSend;
   uses interface Receive;
   uses interface SplitControl as AMControl;
+  uses interface Read<uint16_t>;
+
 }
 implementation {
 
@@ -55,9 +57,14 @@ implementation {
   }
 
   event void Timer0.fired() {
+     call Read.read();
+  }
 
+  event void Read.readDone(error_t result, uint16_t data){
     //send if this is a sensor node
-    if (TOS_NODE_ID > BASE_STATION_ID){
+    if ((TOS_NODE_ID > BASE_STATION_ID) && (result == SUCCESS)){
+
+
 	//printf("Timer triggered!\n");
     	counter++;
     	if (!busy) {
@@ -68,6 +75,7 @@ implementation {
       		}
       		btrpkt->nodeid = TOS_NODE_ID;
       		btrpkt->counter = counter;
+                btrpkt->temp = (((data/10)-396)/10);
       		if (call AMSend.send(AM_BROADCAST_ADDR, 
           		&pkt, sizeof(SenseItAllMsg)) == SUCCESS) {
        			busy = TRUE;

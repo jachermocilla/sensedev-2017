@@ -20,6 +20,7 @@ implementation {
   components ActiveMessageC;
   components new AMSenderC(AM_BLINKTORADIO);
   components new AMReceiverC(AM_BLINKTORADIO);
+  components new SensirionSht11C() as Sensor;
 
   //printf related
   components PrintfC;
@@ -34,4 +35,5 @@ implementation {
   App.AMControl -> ActiveMessageC;
   App.AMSend -> AMSenderC;
   App.Receive -> AMReceiverC;
+  App.Read -> Sensor.Temperature;
 }
