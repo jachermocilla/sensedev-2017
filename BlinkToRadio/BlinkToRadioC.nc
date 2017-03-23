@@ -130,7 +130,7 @@ implementation {
     if (len == sizeof(BlinkToRadioMsg)) {
       BlinkToRadioMsg* btrpkt = (BlinkToRadioMsg*)payload;
       setLeds(btrpkt->counter);
-      //printf("Source Node: %u, Counter: %u\n",btrpkt->nodeid,btrpkt->counter);
+      printf("Source Node: %u, Counter: %u\n",btrpkt->nodeid,btrpkt->counter);
     }
     return msg;
   }
