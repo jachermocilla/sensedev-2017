@@ -99,7 +99,7 @@ implementation {
       		SenseItAllMsg* btrpkt = (SenseItAllMsg*)payload;
       		setLeds(btrpkt->counter);
       		//printf("Source Node: %u, Counter: %u\n",btrpkt->nodeid,btrpkt->counter);
-      		printf("Message received from node %u\n",btrpkt->nodeid);
+      		printf("Temperature received from node %u is %u\n",btrpkt->nodeid, btrpkt->temp);
     	}
     }
     return msg;
