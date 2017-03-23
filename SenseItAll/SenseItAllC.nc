@@ -80,7 +80,8 @@ implementation {
           		&pkt, sizeof(SenseItAllMsg)) == SUCCESS) {
        			busy = TRUE;
       		}
-      		printf("Message sent from me node %d!!\n",TOS_NODE_ID);
+      		printf("%u %u",TOS_NODE_ID,btrpkt->temp);
+                printfflush();
 	}
     }
   }
@@ -99,7 +100,8 @@ implementation {
       		SenseItAllMsg* btrpkt = (SenseItAllMsg*)payload;
       		setLeds(btrpkt->counter);
       		//printf("Source Node: %u, Counter: %u\n",btrpkt->nodeid,btrpkt->counter);
-      		printf("Temperature received from node %u is %u\n",btrpkt->nodeid, btrpkt->temp);
+      		printf("%u %u",btrpkt->nodeid, btrpkt->temp);
+		printfflush();
     	}
     }
     return msg;
