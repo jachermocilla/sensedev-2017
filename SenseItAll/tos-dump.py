@@ -1,5 +1,7 @@
 #!/usr/bin/env python
 
+from datetime import datetime
+
 import sys
 import tos
 
@@ -10,7 +12,12 @@ if '-h' in sys.argv:
 
 am = tos.AM()
 
+f = open("sensor.dat","w")
+
 while True:
     p = am.read()
     if p:
         print p
+	f.write(p)
+
+f.close()
