@@ -21,5 +21,5 @@ while True:
     tmp=p.split()
     print tmp[1]
     f.write(time.strftime("%H%M%S")+","+tmp[0]+","+tmp[1]+"\n")
-
+    f.flush()
 f.close()

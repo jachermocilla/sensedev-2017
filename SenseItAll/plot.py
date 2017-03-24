@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 import matplotlib.pyplot as plt
 
 f=open("sensor.dat","r");
@@ -16,5 +18,5 @@ f.close()
 
 
 plt.plot(xdata,ydata,"ro")
-plt.axis([22000,23000,0,100])
+plt.axis([23197,25800,0,100])
 plt.show()
