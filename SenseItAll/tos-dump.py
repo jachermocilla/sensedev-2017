@@ -2,6 +2,7 @@
 
 from datetime import datetime
 
+import time
 import sys
 import tos
 
@@ -13,11 +14,12 @@ if '-h' in sys.argv:
 am = tos.AM()
 
 f = open("sensor.dat","w")
+f.write("date,nodeid,temp\n")
 
 while True:
     p = am.read()
-    if p:
-        print p
-	f.write(p)
+    tmp=p.split()
+    print tmp[1]
+    f.write(time.strftime("%H:%M:%S")+","+tmp[0]+","+tmp[1]+"\n")
 
 f.close()
