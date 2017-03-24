@@ -1,3 +1,4 @@
+DEF_CHANNEL=21
 COMPONENT=SenseItAllAppC
 CFLAGS+= -I${TOSDIR}/lib/printf
 
